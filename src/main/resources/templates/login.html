@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <title>Home</title>
-
     <object th:include="fragments/fragment :: css" th:remove="tag"></object>
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
-
 <body>
     <div class="container-fluid">
         <h2>Hello!</h2>
@@ -28,7 +25,7 @@
                             </div>
                             <div class="row form-group">
                                 <label class="col-sm-4">Password:</label>
-                                <input type="password" class="col-sm-8 form-control input-sm" name="password">
+                                <input type="password" class="col-sm-8 form-control input-sm" name="password" title="At least 8 or more characters - must contain character and number">
                             </div>
                             <div class="row form-group">
                                 <button type="submit" class="btn btn-primary">Sign In</button>
@@ -40,5 +37,4 @@
         </div>
     </div>
 </body>
-
 </html>

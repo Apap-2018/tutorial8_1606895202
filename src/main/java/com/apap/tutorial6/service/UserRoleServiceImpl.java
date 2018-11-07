@@ -36,13 +36,23 @@ public class UserRoleServiceImpl implements UserRoleService {
     }
 
     @Override
-    public boolean checkIfChangePasswordValid(UserRoleModel user, NewPassword newPassword) {
-        return newPassword.isNewPasswordValid() && newPassword.isOldPasswordValid(user);
-    }
+	public void updateUser(String newPassword, UserRoleModel user) {
+		String newEncryptedPassword = encrypt(newPassword);
+		user.setPassword(newEncryptedPassword);
+		userDb.save(user);
+	}
 
-    @Override
-    public void changeUserPassword(UserRoleModel user, NewPassword newPassword) {
-        user.setPassword(newPassword.getEncryptedNewPassword());
-        userDb.save(user);
-    }
+	@Override
+	public boolean validateRequirements(String password) {
+		char[] pass = password.toCharArray();
+		int alfabet = 0;
+		int digit = 0;
+		for (char character : pass) {
+			if (Character.isLetter(character))
+				alfabet++;
+			else if (Character.isDigit(character))
+				digit++;;
+		}
+		return (((alfabet + digit) >= 8) && (alfabet > 0) && (digit > 0)) ? true : false;
+	}
 }

@@ -13,6 +13,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface FlightDb extends JpaRepository<FlightModel, Long> {
     void deleteByFlightNumber(String flightNumber);
-
     Optional<FlightModel> findByFlightNumber(String flightNumber);
 }
